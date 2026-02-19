@@ -1,34 +1,176 @@
 services:
   ### POLLY POCKET ###
+
+  ## Octoeverywhere ##
   octoeverywhere-polly-pocket:
-    image: octoeverywhere/octoeverywhere:latest
-    restart: unless-stopped
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
     container_name: octoeverywhere-polly-pocket
     environment:
-        # Requried to set the docker conntainer in Bambu Connect mode.
       - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
-      - ACCESS_CODE=${POLLY_POCKET_ACCESS_CODE:-00000000}
-      - SERIAL_NUMBER=${POLLY_POCKET_SERIAL_NUMBER:-000000000000}
-      - PRINTER_IP=${POLLY_POCKET_PRINTER_IP:-192.168.1.219}
-
+      - ACCESS_CODE=${POLLY_POCKET_ACCESS_CODE}
+      - SERIAL_NUMBER=${POLLY_POCKET_SERIAL_NUMBER}
+      - PRINTER_IP=${POLLY_POCKET_PRINTER_IP}
+      - TZ=${TZ}
     volumes:
-      # This can also be an absolute path as well.
-      - ${POLLY_POCKET_DATA_PATH:-/mnt/user/appdata/octoeverywhere/polly}:/data:rw
+      - ${POLLY_POCKET_DATA_PATH}:/data:rw
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-polly-pocket:
+    container_name: octoapp-plugin-polly-pocket
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    restart: ${RESTART}
+    environment:
+        - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+        - ACCESS_CODE=${POLLY_POCKET_ACCESS_CODE}
+        - SERIAL_NUMBER=${POLLY_POCKET_SERIAL_NUMBER}
+        - PRINTER_IP=${POLLY_POCKET_PRINTER_IP}
+        - TZ=${TZ}
+    volumes:
+      - ${POLLY_POCKET_DATA_PATH}:/data
+  
   ### CONSTIPATION ORION ###
+  
+  ## Octoeverywhere ##
   octoeverywhere-constipation-orion:
-    image: octoeverywhere/octoeverywhere:latest
-    restart: always
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
     container_name: octoeverywhere-constipation-orion
     environment:
-        # Requried to set the docker conntainer in Bambu Connect mode.
       - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
-        # https://octoeverywhere.com/s/access-code
-      - ACCESS_CODE=${CONSTIPATION_ORION_ACCESS_CODE:-00000000}
-        # https://octoeverywhere.com/s/bambu-sn
-      - SERIAL_NUMBER=${CONSTIPATION_ORION_SERIAL_NUMBER:-000000000000}
-        # https://octoeverywhere.com/s/bambu-ip
-      - PRINTER_IP=${CONSTIPATION_ORION_PRINTER_IP:-192.168.1.202}
-
+      - ACCESS_CODE=${CONSTIPATION_ORION_ACCESS_CODE}
+      - SERIAL_NUMBER=${CONSTIPATION_ORION_SERIAL_NUMBER}
+      - PRINTER_IP=${CONSTIPATION_ORION_PRINTER_IP}
+      - TZ=${TZ}
     volumes:
-      # This can also be an absolute path as well.
-      - ${CONSTIPATION_ORION_DATA_PATH:-/mnt/user/appdata/octoeverywhere/constipation-orion}:/data:rw
+      - ${CONSTIPATION_ORION_DATA_PATH}:/data:rw
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-constipation-orion:
+    container_name: octoapp-plugin-constipation-orion
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    restart: ${RESTART}
+    environment:
+        - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+        - ACCESS_CODE=${CONSTIPATION_ORION_ACCESS_CODE}
+        - SERIAL_NUMBER=${CONSTIPATION_ORION_SERIAL_NUMBER}
+        - PRINTER_IP=${CONSTIPATION_ORION_PRINTER_IP}
+        - TZ=${TZ}
+    volumes:
+      - ${CONSTIPATION_ORION_DATA_PATH}:/data 
+  
+  ### D's Turd Flinger ###
+  
+  ## Octoeverywhere ##
+  octoeverywhere-ds-turd-flinger:
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
+    container_name: octoeverywhere-ds-turd-flinger
+    environment:
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+      - ACCESS_CODE=${DS_TURD_FLINGER_ACCESS_CODE}
+      - SERIAL_NUMBER=${DS_TURD_FLINGER_SERIAL_NUMBER}
+      - PRINTER_IP=${DS_TURD_FLINGER_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${DS_TURD_FLINGER_DATA_PATH}:/data:rw
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-ds-turd-flinger:
+    container_name: octoapp-plugin-ds-turd-flinger
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    restart: ${RESTART}
+    environment:
+        - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+        - ACCESS_CODE=${DS_TURD_FLINGER_ACCESS_CODE}
+        - SERIAL_NUMBER=${DS_TURD_FLINGER_SERIAL_NUMBER}
+        - PRINTER_IP=${DS_TURD_FLINGER_PRINTER_IP}
+        - TZ=${TZ}
+    volumes:
+      - ${DS_TURD_FLINGER_DATA_PATH}:/data
+  
+  ### PRINTS CHARMING###
+  
+  ## Octoeverywhere ##
+  octoeverywhere-prints-charming:
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
+    container_name: octoeverywhere-prints-charming
+    environment:
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+      - ACCESS_CODE=${PRINTS_CHARMING_ACCESS_CODE}
+      - SERIAL_NUMBER=${PRINTS_CHARMING_SERIAL_NUMBER}
+      - PRINTER_IP=${PRINTS_CHARMING_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${PRINTS_CHARMING_DATA_PATH}:/data:rw
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-prints-charming:
+    container_name: octoapp-plugin-prints-charming
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    restart: ${RESTART}
+    environment:
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+      - ACCESS_CODE=${PRINTS_CHARMING_ACCESS_CODE}
+      - SERIAL_NUMBER=${PRINTS_CHARMING_SERIAL_NUMBER}
+      - PRINTER_IP=${PRINTS_CHARMING_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${PRINTS_CHARMING_DATA_PATH}:/data
+  
+  ### JORDYNS LAYER SLAYER ###
+  
+  ## Octoeverywhere ##
+  octoeverywhere-jordyns-layer-slayer:
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
+    container_name: octoeverywhere-jordyns-layer-slayer
+    environment:
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+      - ACCESS_CODE=${JORDYNS_LAYER_SLAYER_ACCESS_CODE}
+      - SERIAL_NUMBER=${JORDYNS_LAYER_SLAYER_SERIAL_NUMBER}
+      - PRINTER_IP=${JORDYNS_LAYER_SLAYER_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${JORDYNS_LAYER_SLAYER_DATA_PATH}:/data:rw
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-jordyns-layer-slayer:
+    container_name: octoapp-plugin-jordyns-layer-slayer
+    restart: ${RESTART}
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    environment:
+        - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+        - ACCESS_CODE=${JORDYNS_LAYER_SLAYER_ACCESS_CODE}
+        - SERIAL_NUMBER=${JORDYNS_LAYER_SLAYER_SERIAL_NUMBER}
+        - PRINTER_IP=${JORDYNS_LAYER_SLAYER_PRINTER_IP}
+        - TZ=${TZ}
+    volumes:
+      - ${JORDYNS_LAYER_SLAYER_DATA_PATH}:/data
+  
+  ### PRINTNEY SPEARS ###
+  
+  ## Octoeverywhere ##
+  octoeverywhere-printney-spears:
+    image: ${OCTOEVERYWHERE_IMAGE}
+    restart: ${RESTART}
+    container_name: octoeverywhere-printney-spears
+    environment:
+      - COMPANION_MODE=${ELEGOO_COMPANION_MODE}
+      - PRINTER_IP=${PRINTNEY_SPEARS_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${PRINTNEY_SPEARS_DATA_PATH}:/data
+  
+  ## Octoapp Plugin ##
+  octoapp-plugin-printney-spears:
+    container_name: octoapp-plugin-printney-spears
+    image: ${OCTOAPP_PLUGIN_IMAGE}
+    restart: ${RESTART}
+    environment:
+      - COMPANION_MODE=${ELEGOO_COMPANION_MODE}
+      - PRINTER_IP=${PRINTNEY_SPEARS_PRINTER_IP}
+      - TZ=${TZ}
+    volumes:
+      - ${PRINTNEY_SPEARS_DATA_PATH}:/data

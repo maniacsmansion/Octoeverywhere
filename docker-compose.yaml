@@ -1,0 +1,34 @@
+services:
+  ### POLLY POCKET ###
+  octoeverywhere-polly-pocket:
+    image: octoeverywhere/octoeverywhere:latest
+    restart: unless-stopped
+    container_name: octoeverywhere-polly-pocket
+    environment:
+        # Requried to set the docker conntainer in Bambu Connect mode.
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+      - ACCESS_CODE=${POLLY_POCKET_ACCESS_CODE:-00000000}
+      - SERIAL_NUMBER=${POLLY_POCKET_SERIAL_NUMBER:-000000000000}
+      - PRINTER_IP=${POLLY_POCKET_PRINTER_IP:-192.168.1.219}
+
+    volumes:
+      # This can also be an absolute path as well.
+      - ${POLLY_POCKET_DATA_PATH:-/mnt/user/appdata/octoeverywhere/polly}:/data:rw
+  ### CONSTIPATION ORION ###
+  octoeverywhere-constipation-orion:
+    image: octoeverywhere/octoeverywhere:latest
+    restart: always
+    container_name: octoeverywhere-constipation-orion
+    environment:
+        # Requried to set the docker conntainer in Bambu Connect mode.
+      - COMPANION_MODE=${BAMBU_COMPANION_MODE:-bambu}
+        # https://octoeverywhere.com/s/access-code
+      - ACCESS_CODE=${CONSTIPATION_ORION_ACCESS_CODE:-00000000}
+        # https://octoeverywhere.com/s/bambu-sn
+      - SERIAL_NUMBER=${CONSTIPATION_ORION_SERIAL_NUMBER:-000000000000}
+        # https://octoeverywhere.com/s/bambu-ip
+      - PRINTER_IP=${CONSTIPATION_ORION_PRINTER_IP:-192.168.1.202}
+
+    volumes:
+      # This can also be an absolute path as well.
+      - ${CONSTIPATION_ORION_DATA_PATH:-/mnt/user/appdata/octoeverywhere/constipation-orion}:/data:rw
